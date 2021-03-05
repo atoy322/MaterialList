@@ -11,7 +11,7 @@ function create_list(json_string){
 	
 	var tr = document.createElement('tr');
 	table.appendChild(tr);
-	tr.innerHTML = '<td class="input"><input id="newname" placeholder="商品名を入力"><input id="newurl" placeholder="WebSiteのURL"></td><td class="input"><input id="newamount" type="number"></td><td class="input"><input id="newprice" type="number"></td><td class="input"><input id="newplace"></td>';
+	tr.innerHTML = '<td class="input"><input id="newname" placeholder="商品名を入力"><input id="newurl" placeholder="WebSiteのURL"></td><td class="input"><input id="newamount" type="number"></td><td class="input"><input id="newprice" type="number"></td><td class="input"><input id="newplace" placeholder="購入場所を入力"></td>';
 }
 
 function GetJson(){
