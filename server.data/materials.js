@@ -40,7 +40,7 @@ function RequestMaterial(){
 	//alert(amountval);
 	//alert(priceval);
 	xhr.open('POST', 'NewMaterial', true);
-	xhr.send(`name=${nameval};url=${urlval};amount=${amountval};price=${priceval};place=${placeval}`);
+	xhr.send(`name^${nameval};url^${urlval};amount^${amountval};price^${priceval};place^${placeval}`);
 	xhr.onload = () => {
 		table.innerHTML = '<tr><th><p class="header">名前</p></th><th><p class="header">量</p></th><th><p class="header">価格</p></th><th><p class="header">場所</p></th></tr>';
 		create_list(xhr.responseText);
