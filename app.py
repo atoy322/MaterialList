@@ -149,7 +149,7 @@ class SelectServer:
 
 
 server = SelectServer()
-server.bind(('127.0.0.1', 3022))
+server.bind(('0.0.0.0', 8000))
 print('ready')
 server.serve_forever()
 
