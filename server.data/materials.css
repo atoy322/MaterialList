@@ -57,7 +57,7 @@ td#pricecell {
 }
 
 td#placecell {
-    width: 20%;
+    width: 25%;
 }
 
 th {
@@ -90,7 +90,7 @@ th {
 
 input {
     height: 60%;
-    font-size: 64px;
+    font-size: 50px;
     transform: scale(0.6);
     margin-top: 0px;
     margin-bottom: 0px;
@@ -106,7 +106,7 @@ input#newurl {
 }
 
 input#newamount {
-    width: 85%;
+    width: 60%;
     margin-left: 10%;
 }
 

@@ -8,10 +8,11 @@ function start(){
 function total_price(){
     var sum = 0;
     var h1 = document.getElementById("total_price");
-    var prices = document.getElementsByClassName("price");
+    var datas = document.getElementsByClassName("row");
+    
 
-    for(let i=0; i<prices.length; i++){
-        sum += parseInt(prices[i].innerHTML.slice(1));
+    for(var i=0; i<datas.childElementCount; i++){
+        alert(datas.children[i].innerHTML);
     }
     h1.innerHTML = "Total price: ￥" + sum.toString();
 }
@@ -22,6 +23,7 @@ function create_list(json_string){
     
     data.forEach(jsn => {
         var tr = document.createElement('tr');
+        tr.className = "row";
         table.appendChild(tr);
         
         tr.innerHTML = `<td id="namecell"><a href="${jsn.url}" target="blank_"><span class="name">${jsn.name}</span></a></td>\n<td id="amountcell"><span class="amount">${jsn.amount}</span></td>\n<td id="pricecell"><span class="price">¥${jsn.price}</span></td>\n<td id="placecell"><span class="place">${jsn.place}</span></td>`;
