@@ -12,5 +12,19 @@
         "amount": "1",
         "price": "3250",
         "place": "Amazon"
+    },
+    {
+        "name": "\u30e2\u30fc\u30bf\u30fc\u30c9\u30e9\u30a4\u30d0\u30fc",
+        "url": "http://akizukidenshi.com",
+        "amount": "1",
+        "price": "950",
+        "place": "\u79cb\u6708"
+    },
+    {
+        "name": "New Material",
+        "url": "https://www.yahoo.co.jp",
+        "amount": "1",
+        "price": "1250",
+        "place": "Switch Science"
     }
 ]
