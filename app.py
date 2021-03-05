@@ -127,14 +127,18 @@ class SelectServer:
             dic = dict([i.split('^') for i in data.split(";")])
             print(dic)
             
-            jsn = add_json(dic).encode()
+            if "" in dic.values():
+                with open(MATERIAL_DATABASE, "rb") as f:
+                    jsn = f.read()
+            else:
+                jsn = add_json(dic).encode()
             
             self.response(sock, (200, 'OK'))
             self.write_waiters[sock] = (self.send, jsn)
         else:
             sock.close()
             self.read_waiters[self.server_socket] = self.accept
-                
+
     def parse_header(self, header_str):
         lines = header_str.split('\r\n')
         cmd, path, version = lines[0].split()
