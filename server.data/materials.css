@@ -33,7 +33,7 @@ body {
 
 .amount {
     font-size: 2.5em;
-    margin-left: 45%;
+    margin-left: 10%;
 }
 
 td {
@@ -41,7 +41,8 @@ td {
 }
 
 td.input {
-    height: 160px;
+    height: 200px;
+    text-align: center;
 }
 
 td#namecell {
@@ -50,6 +51,7 @@ td#namecell {
 
 td#amountcell {
     width: 5%;
+    text-align: center;
 }
 
 td#pricecell {
@@ -57,7 +59,7 @@ td#pricecell {
 }
 
 td#placecell {
-    width: 25%;
+    width: 10%;
 }
 
 th {
@@ -89,35 +91,31 @@ th {
 }
 
 input {
-    height: 60%;
+    height: 40%;
     font-size: 50px;
-    transform: scale(0.6);
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
 }
 
 input#newname {
-    width: 100%;
+    width: 95%;
 }
 
 input#newurl {
-    width: 100%;
+    width: 95%;
 }
 
 input#newamount {
     width: 60%;
-    margin-left: 10%;
 }
 
 input#newprice {
-    width: 100%;
-    margin-left: 0%;
+    width: 95%;
 }
 
 input#newplace {
     width: 95%;
-    margin: 0% 0% 0% 0%;
 }
 
 #total_price {

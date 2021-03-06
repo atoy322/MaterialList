@@ -8,11 +8,11 @@ function start(){
 function total_price(){
     var sum = 0;
     var h1 = document.getElementById("total_price");
-    var datas = document.getElementsByClassName("row");
+    var prices = document.getElementsByClassName("price");
     
 
-    for(var i=0; i<datas.childElementCount; i++){
-        alert(datas.children[i].innerHTML);
+    for(var i=0; i<prices.length; i++){
+        sum += parseInt(prices[i].innerHTML.slice(1));
     }
     h1.innerHTML = "Total price: ￥" + sum.toString();
 }
