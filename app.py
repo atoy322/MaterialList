@@ -131,7 +131,7 @@ class SelectServer:
             else:
                 data = header.split('\r\n\r\n')[-1]
             
-            dic = dict([i.split('^') for i in data.split(";")])
+            dic = dict([i.split('|#|') for i in data.split("|&|")])
             print(dic)
             
             if "" in dic.values():

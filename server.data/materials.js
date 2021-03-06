@@ -1,5 +1,6 @@
 var coin = new Audio("money.mp3");
 
+
 function start(){
     GetJson();
     setInterval(total_price, 500);
@@ -51,14 +52,15 @@ function RequestMaterial(){
     var amountval = document.getElementById("newamount").value;
     var priceval = document.getElementById("newprice").value;
     var placeval = document.getElementById("newplace").value;
-    
+
     if((nameval == "")||(urlval == "")||(amountval == "")||(priceval == "")||(placeval == "")){
         alert("入力内容に不備があります。");
         return;
     }
+    
 
     xhr.open('POST', 'NewMaterial', true);
-    xhr.send(`name^${nameval};url^${urlval};amount^${amountval};price^${priceval};place^${placeval}`);
+    xhr.send(`name|#|${nameval}|&|url|#|${urlval}|&|amount|#|${amountval}|&|price|#|${priceval}|&|place|#|${placeval}`);
     xhr.onload = () => {
         table.innerHTML = '<tr><th><p class="header">名前</p></th><th><p class="header">量</p></th><th><p class="header">価格</p></th><th><p class="header">場所</p></th></tr>';
         create_list(xhr.responseText);
