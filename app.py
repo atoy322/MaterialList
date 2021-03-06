@@ -105,7 +105,12 @@ class SelectServer:
         sock.sendall((response_message+'\r\n').encode())
     
     def recv(self, sock):
-        header = sock.recv(2048).decode()
+        try:
+            header = sock.recv(2048).decode()
+        except Exception as e:
+            print(e)
+            print(header)
+            exit()
         if not header:
             self.read_waiters[self.server_socket] = self.accept
             return
