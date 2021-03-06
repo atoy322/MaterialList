@@ -61,15 +61,20 @@ class SelectServer:
                     []
                 )
             
-            for readable in readables:
-                func = self.read_waiters[readable]
-                func(readable)
-                self.read_waiters.pop(readable)
+            try:
+                for readable in readables:
+                    func = self.read_waiters[readable]
+                    func(readable)
+                    self.read_waiters.pop(readable)
                 
-            for writable in writables:
-                func, arg = self.write_waiters[writable]
-                func(writable, arg)
-                self.write_waiters.pop(writable)
+                for writable in writables:
+                    func, arg = self.write_waiters[writable]
+                    func(writable, arg)
+                    self.write_waiters.pop(writable)
+            except Exception as e:
+                print(e)
+                print(self.read_waiters, self.write_waiters)
+                from ptpython.repl import embed
         
     def bind(self, address):
         self.server_socket.bind(address)
@@ -156,11 +161,7 @@ server = SelectServer()
 server.bind(('0.0.0.0', 8000))
 print('ready')
 
-try:
-    server.serve_forever()
-except:
-    from ptpython.repl import embed
-    embed(globals(), locals())
+server.serve_forever()
 
 '''
 import threading, webbrowser
