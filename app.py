@@ -76,6 +76,7 @@ class SelectServer:
                 print(self.read_waiters, self.write_waiters)
                 from ptpython.repl import embed
                 embed(globals(), locals())
+                exit()
         
     def bind(self, address):
         self.server_socket.bind(address)
