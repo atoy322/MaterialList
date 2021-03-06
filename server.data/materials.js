@@ -78,6 +78,7 @@ function GetTable(){
 }
 
 function RequestMaterial(){
+    var sound = new Audio("money.mp3");
     var xhr = new XMLHttpRequest();
     var table = document.getElementById("tbl");
     var nameval = document.getElementById("newname").value;
@@ -87,7 +88,7 @@ function RequestMaterial(){
     var placeval = document.getElementById("newplace").value;
 
     if((nameval == "")||(urlval == "")||(amountval == "")||(priceval == "")||(placeval == "")){
-        alert("入力内容に不備があります。");
+        alert("空の項目があります");
         return;
     }
     
@@ -97,7 +98,6 @@ function RequestMaterial(){
     xhr.onload = () => {
         table.innerHTML = '<tr><th><p class="header">名前</p></th><th><p class="header">量</p></th><th><p class="header">価格</p></th><th><p class="header">場所</p></th></tr>';
         create_list(xhr.responseText);
+        sound.play();
     };
-    var sound = new Audio("money.mp3");
-    sound.play();
 }
