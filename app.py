@@ -155,7 +155,12 @@ class SelectServer:
 server = SelectServer()
 server.bind(('0.0.0.0', 8000))
 print('ready')
-server.serve_forever()
+
+try:
+    server.serve_forever()
+except:
+    from ptpython.repl import embed
+    embed(globals(), locals())
 
 '''
 import threading, webbrowser

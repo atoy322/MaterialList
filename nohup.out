@@ -1,0 +1,10 @@
+Listening on 0.0.0.0 port 8000
+ready
+Traceback (most recent call last):
+  File "app.py", line 158, in <module>
+    server.serve_forever()
+  File "app.py", line 66, in serve_forever
+    func(readable)
+  File "app.py", line 101, in recv
+    header = sock.recv(2048).decode()
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe0 in position 5: invalid continuation byte

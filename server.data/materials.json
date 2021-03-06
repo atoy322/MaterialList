@@ -1,1 +1,23 @@
-[]
+[
+    {
+        "name": "A",
+        "url": "A",
+        "amount": "1",
+        "price": "1000",
+        "place": "A"
+    },
+    {
+        "name": "D",
+        "url": "U",
+        "amount": "2",
+        "price": "100",
+        "place": "B"
+    },
+    {
+        "name": "B",
+        "url": "G",
+        "amount": "5",
+        "price": "368",
+        "place": "C"
+    }
+]
