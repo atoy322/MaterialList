@@ -1,6 +1,3 @@
-var coin = new Audio("money.mp3");
-
-
 function start(){
     GetJson();
     setInterval(total_price, 500);
@@ -65,5 +62,6 @@ function RequestMaterial(){
         table.innerHTML = '<tr><th><p class="header">名前</p></th><th><p class="header">量</p></th><th><p class="header">価格</p></th><th><p class="header">場所</p></th></tr>';
         create_list(xhr.responseText);
     };
-    coin.play();
+    var sound = new Audio("money.mp3");
+    sound.play();
 }

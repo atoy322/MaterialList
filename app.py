@@ -106,10 +106,13 @@ class SelectServer:
     
     def recv(self, sock):
         try:
-            header = sock.recv(2048).decode()
+            header = sock.recv(2048)
+            header = header.decode()
         except Exception as e:
             print(e)
             print(header)
+            from ptpython.repl import embed
+            embed(globals(), locals())
             exit()
         if not header:
             self.read_waiters[self.server_socket] = self.accept
