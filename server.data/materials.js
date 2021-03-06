@@ -20,11 +20,11 @@ function create_list(json_string){
     var data = JSON.parse(json_string);
     var cols = ["name", "amount", "price", "place"];
     var input_opts = {
-        "name": ["商品名を入力", ""],
-        "url": ["URL", ""],
+        "name": ["商品名を入力", "text"],
+        "url": ["URL", "url"],
         "amount": ["数量", "number"],
         "price": ["価格", "number"],
-        "place": ["買う場所", ""]
+        "place": ["買う場所", "text"]
     }
     
     data.forEach(jsn => {
