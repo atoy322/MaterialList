@@ -40,7 +40,6 @@ function create_list(json_string){
             switch(col){
                 case "name":
                     td.innerHTML = `<a href=${jsn.url} target="blank_"><span class="name">${jsn.name}</span></a>`;
-                    td.innerHTML += '<img src="trash.png" class="trash_icon">';
                     break;
                 case "amount":
                     td.innerHTML = `<span class="amount">${jsn.amount}</span>`;
@@ -53,6 +52,7 @@ function create_list(json_string){
                     break;
             }
         });
+        tr.onclick = () => {alert(jsn.name);};
     });
     
     var tr = document.createElement('tr');
