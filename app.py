@@ -1,11 +1,10 @@
 import socket
 import select
 import os
-#import console
 import json
 
 
-#console.set_font('Ubuntu Mono')
+
 CWD = os.getcwd() + '/'
 
 FILES = 'server.data'
@@ -27,9 +26,8 @@ def file_to_bin(path):
     return data
     
 def cprint(color, msg):
-    #console.set_color(*color)
     print(msg)
-    #console.set_color(*WHITE)
+
 
 def add_json(dictionaly):
     with open(MATERIAL_DATABASE, 'r', encoding='utf8') as f:
@@ -93,8 +91,6 @@ class SelectServer:
         sock.close()
         
     def response(self, sock, status, options={}):
-        status_code = status[0]
-        status_message = status[1]
         response_message = ''
         
         response_message += f'HTTP/1.0 {str(status[0])} {status[1]}\r\n'
@@ -105,15 +101,15 @@ class SelectServer:
         sock.sendall((response_message+'\r\n').encode())
     
     def recv(self, sock):
+        header = sock.recv(2048)
         try:
-            header = sock.recv(2048)
             header = header.decode()
         except Exception as e:
+            sock.close()
+            self.read_waiters[self.server_socket] = self.accept
             print(e)
             print(header)
-            from ptpython.repl import embed
-            embed(globals(), locals())
-            exit()
+
         if not header:
             self.read_waiters[self.server_socket] = self.accept
             return
@@ -130,7 +126,6 @@ class SelectServer:
                 self.response(sock, (404, 'NOT FOUND'))
                 self.read_waiters[self.server_socket] = self.accept
                 sock.close()
-                print(header)
         
         elif cmd == 'POST':
             if not header.split('\r\n\r\n')[-1]:
