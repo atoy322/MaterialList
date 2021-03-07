@@ -128,3 +128,8 @@ input#newplace {
     text-align: center;
     padding: 0px;
 }
+
+img.trash_icon {
+    width: 32px;
+    height: 32px;
+}
