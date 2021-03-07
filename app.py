@@ -109,6 +109,7 @@ class SelectServer:
             self.read_waiters[self.server_socket] = self.accept
             print(e)
             print(header)
+            return
 
         if not header:
             self.read_waiters[self.server_socket] = self.accept
