@@ -48,20 +48,20 @@ td.input {
     text-align: center;
 }
 
-td#namecell {
+td.namecell {
     width: 30%;
 }
 
-td#amountcell {
+td.amountcell {
     width: 5%;
     text-align: center;
 }
 
-td#pricecell {
+td.pricecell {
     width: 5%;
 }
 
-td#placecell {
+td.placecell {
     width: 10%;
 }
 

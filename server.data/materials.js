@@ -17,7 +17,7 @@ function total_price(){
 }
 
 function create_list(json_string){
-    var table = document.getElementById('tbl');
+    var table = document.getElementById("tbl");
     var data = JSON.parse(json_string);
     var cols = ["name", "amount", "price", "place"];
     var input_opts = {
@@ -28,13 +28,19 @@ function create_list(json_string){
         "place": ["買う場所", "text"]
     }
     
-    data.forEach(jsn => {
-        var tr = document.createElement('tr');
+    for(var i=0; i<data.length; i++){
+        var jsn = data[i];
+        var tr = document.createElement("tr");
+        var menu = document.createElement("div");
+        tr.id = `data${i}`;
+        menu.className = "menu";
         table.appendChild(tr);
+        table.appendChild(menu);
 
-        cols.forEach(col => {
+        for(var c=0; c<cols.length; c++){
+            var col = cols[c];
             var td = document.createElement("td");
-            td.id = col + "cell";
+            td.className = col + "cell";
             tr.appendChild(td);
 
             switch(col){
@@ -51,9 +57,11 @@ function create_list(json_string){
                     td.innerHTML = `<span class="place">${jsn.place}</span>`;
                     break;
             }
-        });
-        tr.onclick = () => {alert(jsn.name);};
-    });
+        }
+        //tr.ontouchstart = click_event;
+        tr.onclick = click_event;
+        menu.id = `menu${i}`;
+    }
     
     var tr = document.createElement('tr');
     table.appendChild(tr);
@@ -68,6 +76,25 @@ function create_list(json_string){
             td.innerHTML += `<input id="newurl" placeholder="${input_opts["url"][0]}" type="${input_opts["url"][1]}">`;
         }
     });
+}
+
+function click_event(evt){
+    var element = evt.target;
+    var cls = element.className;
+    var id = element.id;
+    
+    if(cls == "name"){
+        return;
+    }
+
+    do {
+        element = element.parentElement;
+    }while(element.localName != "tr");
+
+    var clicked = parseInt(element.id.slice(4));
+    var menu = document.getElementById(`menu${clicked}`);
+    menu.innerHTML = "<tr><td>a</td><td>b</td><td>c</td><td>d</td></tr>";
+    console.log(menu);
 }
 
 function GetTable(){
