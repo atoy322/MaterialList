@@ -7,10 +7,11 @@ function total_price(){
     var sum = 0;
     var h1 = document.getElementById("total_price");
     var prices = document.getElementsByClassName("price");
+    var amounts = document.getElementsByClassName("amount");
     
 
     for(var i=0; i<prices.length; i++){
-        sum += parseInt(prices[i].innerHTML.slice(1));
+        sum += parseInt(prices[i].innerHTML.slice(1)) * parseInt(amounts[i].innerHTML);
     }
     h1.innerHTML = "Total price: ￥" + sum.toString();
 }
