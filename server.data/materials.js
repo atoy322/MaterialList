@@ -95,7 +95,7 @@ function click_event(evt){
     var clicked = parseInt(element.id.slice(4));
     var menu = document.getElementById(`menu${clicked}`);
     menu.display = "inline";
-    menu.innerHTML = '<td colspan="4"><h1>abc</h1></td>';
+    menu.innerHTML = '<td colspan="4"><button>Remove</button></td>';
     element.style.backgroundColor = '#ffef90';
 }
 
