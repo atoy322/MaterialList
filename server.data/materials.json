@@ -75,33 +75,5 @@
         "amount": "1",
         "price": "980",
         "place": "Amazon"
-    },
-    {
-        "name": "Test",
-        "url": "http",
-        "amount": "4",
-        "price": "1000",
-        "place": "T"
-    },
-    {
-        "name": "Test",
-        "url": "http",
-        "amount": "5",
-        "price": "500",
-        "place": "Y"
-    },
-    {
-        "name": "test",
-        "url": "http",
-        "amount": "10",
-        "price": "1000",
-        "place": "A"
-    },
-    {
-        "name": "test",
-        "url": "http",
-        "amount": "10",
-        "price": "5000",
-        "place": "a"
     }
 ]

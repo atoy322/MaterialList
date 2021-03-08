@@ -41,6 +41,19 @@ def add_json(dictionaly):
     
     return json.dumps(data)
 
+def rm_json(col):
+    with open(MATERIAL_DATABASE, 'r', encoding='utf8') as f:
+        data = json.load(f)
+
+    data.pop(col)
+
+    with open(MATERIAL_DATABASE, 'w', encoding='utf8') as f:
+        json.dump(data, f, indent=4, separators=(',', ': '))
+        f.flush()
+    
+    return json.dumps(data)
+
+
 
 class SelectServer:
     def __init__(self, *args, **kwargs):
@@ -129,23 +142,40 @@ class SelectServer:
                 sock.close()
         
         elif cmd == 'POST':
+            endpoint = path.split("/")[-1]
             if not header.split('\r\n\r\n')[-1]:
-                data = sock.recv(1024).decode()
+                data = sock.recv(2048).decode()
                 header += data
             else:
                 data = header.split('\r\n\r\n')[-1]
             
-            dic = dict([i.split('|#|') for i in data.split("|&|")])
-            print(dic)
-            
-            if "" in dic.values():
-                with open(MATERIAL_DATABASE, "rb") as f:
-                    jsn = f.read()
+            if endpoint == "AddMaterial":
+                cprint(GREEN, f'POST:[200]:{endpoint}')
+                dic = dict([i.split('|#|') for i in data.split("|&|")])
+                print(dic)
+
+                if "" in dic.values():
+                    with open(MATERIAL_DATABASE, "rb") as f:
+                        jsn = f.read()
+                else:
+                    jsn = add_json(dic).encode()
+
+                self.response(sock, (200, 'OK'))
+                self.write_waiters[sock] = (self.send, jsn)
+
+            elif endpoint == "RemoveMaterial":
+                cprint(GREEN, f'POST:[200]:{endpoint}')
+                dic = dict([i.split("=") for i in data.split("&")])
+                jsn = rm_json(int(dic["col"])).encode()
+                self.response(sock, (200, 'OK'))
+                self.write_waiters[sock] = (self.send, jsn)
+
             else:
-                jsn = add_json(dic).encode()
-            
-            self.response(sock, (200, 'OK'))
-            self.write_waiters[sock] = (self.send, jsn)
+                cprint(RED, f'POST:[404]:{path.split("/")[-1]}')
+                self.response(sock, (404, 'NOT FOUND'))
+                self.read_waiters[self.server_socket] = self.accept
+                sock.close()
+
         else:
             sock.close()
             self.read_waiters[self.server_socket] = self.accept

@@ -1,3 +1,7 @@
+const menu_sound = new Audio("menu.mp3");
+const add_sound = new Audio("money.mp3");
+const trash_sound = new Audio("trash.mp3");
+
 function start(){
     GetTable();
     setInterval(total_price, 500);
@@ -98,14 +102,31 @@ function click_event(evt){
     console.log(element.id);
     if(menu.display == "none"){
         menu.display = "inline";
-        menu.innerHTML = '<td colspan="4"><button class="remove_button" ontouchstart>リストから削除</button>\
-        <button class="bought_button" ontouchstart>完了</button></td>';
+        var td = document.createElement("td");
+        td.colSpan = "4";
+        var remove_btn = document.createElement("button");
+        var bought_btn = document.createElement("button");
+        remove_btn.className = "remove_button";
+        bought_btn.className = "bought_button";
+        remove_btn.innerHTML = "リストから削除";
+        bought_btn.innerHTML = "完了";
+        remove_btn.id = `rbtn${clicked}`;
+        bought_btn.id = `bbtn${clicked}`;
+        remove_btn.onclick = RequestRemoveMaterial;
+        bought_btn.onclick = null;
+        td.appendChild(remove_btn);
+        td.appendChild(bought_btn);
+        menu.appendChild(td);
         element.style.backgroundColor = '#ffef90';
+        menu_sound.currentTime = 0;
+        menu_sound.play();
     }
     else if(menu.display == "inline"){
         menu.display = "none";
         menu.innerHTML = "";
         element.style.backgroundColor = '#ffffff';
+        menu_sound.currentTime = 0;
+        menu_sound.play();
     }
 }
 
@@ -118,8 +139,7 @@ function GetTable(){
     };
 }
 
-function RequestMaterial(){
-    var sound = new Audio("money.mp3");
+function RequestAddMaterial(){
     var xhr = new XMLHttpRequest();
     var table = document.getElementById("tbl");
     var nameval = document.getElementById("newname").value;
@@ -134,11 +154,25 @@ function RequestMaterial(){
     }
     
 
-    xhr.open('POST', 'NewMaterial', true);
+    xhr.open('POST', 'AddMaterial', true);
     xhr.send(`name|#|${nameval}|&|url|#|${urlval}|&|amount|#|${amountval}|&|price|#|${priceval}|&|place|#|${placeval}`);
     xhr.onload = () => {
         table.innerHTML = '<tr><th><p class="header">名前</p></th><th><p class="header">量</p></th><th><p class="header">価格</p></th><th><p class="header">場所</p></th></tr>';
         create_list(xhr.responseText);
-        sound.play();
+        add_sound.play();
+    };
+}
+
+function RequestRemoveMaterial(evt){
+    var sound = new Audio("trash.mp3");
+    var xhr = new XMLHttpRequest();
+    var table = document.getElementById("tbl");
+    var id = evt.target.id.slice(4);
+    xhr.open('POST', 'RemoveMaterial', true);
+    xhr.send(`col=${id}`);
+    xhr.onload = () => {
+        table.innerHTML = '<tr><th><p class="header">名前</p></th><th><p class="header">量</p></th><th><p class="header">価格</p></th><th><p class="header">場所</p></th></tr>';
+        create_list(xhr.responseText);
+        trash_sound.play();
     };
 }
