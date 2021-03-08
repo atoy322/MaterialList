@@ -94,9 +94,19 @@ function click_event(evt){
 
     var clicked = parseInt(element.id.slice(4));
     var menu = document.getElementById(`menu${clicked}`);
-    menu.display = "inline";
-    menu.innerHTML = '<td colspan="4"><button>Remove</button></td>';
-    element.style.backgroundColor = '#ffef90';
+
+    console.log(element.id);
+    if(menu.display == "none"){
+        menu.display = "inline";
+        menu.innerHTML = '<td colspan="4"><button class="remove_button" ontouchstart>リストから削除</button>\
+        <button class="bought_button" ontouchstart>完了</button></td>';
+        element.style.backgroundColor = '#ffef90';
+    }
+    else if(menu.display == "inline"){
+        menu.display = "none";
+        menu.innerHTML = "";
+        element.style.backgroundColor = '#ffffff';
+    }
 }
 
 function GetTable(){

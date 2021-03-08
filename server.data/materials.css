@@ -139,9 +139,32 @@ img.trash_icon {
 
 .menu {
 	width: 100%;
-	font-size: 2.5em;
 	background-color: #ffef90;
 	margin: 0px;
 	padding: 0px;
 }
 
+button.remove_button, button.bought_button {
+    width: 40%;
+    font-size: 2.5em;
+    margin-left: 5%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+button.remove_button {
+    color:red;
+    background-color: lightgray;
+}
+
+button.bought_button {
+    color:black;
+    background-color: azure;
+}
+
+button.remove_button:active {
+    background-color:tomato;
+}
+
+button.bought_button:active {
+    background-color:#9bb8ff;
+}
