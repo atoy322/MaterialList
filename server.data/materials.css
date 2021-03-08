@@ -136,3 +136,12 @@ img.trash_icon {
     width: 32px;
     height: 32px;
 }
+
+.menu {
+	width: 100%;
+	font-size: 2.5em;
+	background-color: #ffef90;
+	margin: 0px;
+	padding: 0px;
+}
+

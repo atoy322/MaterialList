@@ -31,9 +31,10 @@ function create_list(json_string){
     for(var i=0; i<data.length; i++){
         var jsn = data[i];
         var tr = document.createElement("tr");
-        var menu = document.createElement("div");
+        var menu = document.createElement("tr");
         tr.id = `data${i}`;
         menu.className = "menu";
+        menu.display = "none";
         table.appendChild(tr);
         table.appendChild(menu);
 
@@ -93,8 +94,9 @@ function click_event(evt){
 
     var clicked = parseInt(element.id.slice(4));
     var menu = document.getElementById(`menu${clicked}`);
-    menu.innerHTML = "<tr><td>a</td><td>b</td><td>c</td><td>d</td></tr>";
-    console.log(menu);
+    menu.display = "inline";
+    menu.innerHTML = '<td colspan="4"><h1>abc</h1></td>';
+    element.style.backgroundColor = '#ffef90';
 }
 
 function GetTable(){
