@@ -45,7 +45,10 @@ def rm_json(col):
     with open(MATERIAL_DATABASE, 'r', encoding='utf8') as f:
         data = json.load(f)
 
-    data.pop(col)
+    try:
+        data.pop(col)
+    except:
+        pass
 
     with open(MATERIAL_DATABASE, 'w', encoding='utf8') as f:
         json.dump(data, f, indent=4, separators=(',', ': '))
