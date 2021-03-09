@@ -63,7 +63,7 @@ function create_list(json_string){
             }
         }
         //tr.ontouchstart = click_event;
-        tr.onclick = click_event;
+        tr.onmousedown = click_event;
         menu.id = `menu${i}`;
     }
     
@@ -111,8 +111,8 @@ function click_event(evt){
         bought_btn.innerHTML = "完了";
         remove_btn.id = `rbtn${clicked}`;
         bought_btn.id = `bbtn${clicked}`;
-        remove_btn.onclick = RequestRemoveMaterial;
-        bought_btn.onclick = null;
+        remove_btn.onmousedown = RequestRemoveMaterial;
+        bought_btn.onmousedown = function(){};
         remove_btn.ontouchstart = null;
         bought_btn.ontouchstart = null;
         td.appendChild(remove_btn);
