@@ -1,4 +1,3 @@
-const menu_sound = new Audio("menu.mp3");
 const add_sound = new Audio("money.mp3");
 const trash_sound = new Audio("trash.mp3");
 
@@ -114,19 +113,17 @@ function click_event(evt){
         bought_btn.id = `bbtn${clicked}`;
         remove_btn.onclick = RequestRemoveMaterial;
         bought_btn.onclick = null;
+        remove_btn.ontouchstart = null;
+        bought_btn.ontouchstart = null;
         td.appendChild(remove_btn);
         td.appendChild(bought_btn);
         menu.appendChild(td);
         element.style.backgroundColor = '#ffef90';
-        menu_sound.currentTime = 0;
-        menu_sound.play();
     }
     else if(menu.display == "inline"){
         menu.display = "none";
         menu.innerHTML = "";
         element.style.backgroundColor = '#ffffff';
-        menu_sound.currentTime = 0;
-        menu_sound.play();
     }
 }
 
