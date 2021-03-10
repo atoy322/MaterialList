@@ -2,6 +2,7 @@ import socket
 import select
 import os
 import json
+import ssl
 
 
 
@@ -60,6 +61,8 @@ def rm_json(col):
 
 class SelectServer:
     def __init__(self, *args, **kwargs):
+        self.context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+        self.context.load_cert_chain(certfile="mock.crt", keyfile="mock.key")
         self.server_socket = socket.socket(*args, **kwargs)
         self.server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.read_waiters = {}
@@ -99,6 +102,7 @@ class SelectServer:
         
     def accept(self, sock):
         conn, addr = sock.accept()
+        conn = self.context.wrap_socket(conn, server_side=True)
         self.read_waiters[conn] = self.recv
     
     def send(self, sock, data):
