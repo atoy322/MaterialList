@@ -93,6 +93,7 @@ th {
     transform: translate(0, 15%);
 }
 
+
 input {
     height: 40%;
     font-size: 50px;
@@ -130,11 +131,6 @@ input#newplace {
     background-color:palegoldenrod;
     text-align: center;
     padding: 0px;
-}
-
-img.trash_icon {
-    width: 32px;
-    height: 32px;
 }
 
 .menu {
