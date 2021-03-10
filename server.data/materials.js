@@ -112,7 +112,7 @@ function click_event(evt){
         remove_btn.id = `rbtn${clicked}`;
         bought_btn.id = `bbtn${clicked}`;
         remove_btn.onmousedown = RequestRemoveMaterial;
-        bought_btn.onmousedown = function(){};
+        bought_btn.onmousedown = RequestDisableMaterial;
         remove_btn.ontouchstart = null;
         bought_btn.ontouchstart = null;
         td.appendChild(remove_btn);
@@ -171,5 +171,24 @@ function RequestRemoveMaterial(evt){
         table.innerHTML = '<tr><th><p class="header">名前</p></th><th><p class="header">量</p></th><th><p class="header">価格</p></th><th><p class="header">場所</p></th></tr>';
         create_list(xhr.responseText);
         trash_sound.play();
+    };
+}
+
+function RequestDisableMaterial(evt){
+    var xhr = new XMLHttpRequest();
+    var id = evt.target.id.slice(4);
+    var tr = document.getElementById(`data${id}`);
+
+    if(evt.className == "disabled"){
+        tr.className = "";
+    }
+    else{
+        tr.classList.add("disabled");
+    }
+    return;
+    xhr.open('POST', 'DisableMaterial', true);
+    xhr.send(`col=${id}`);
+    xhr.onload = () => {
+        create_list(xhr.responseText);
     };
 }
