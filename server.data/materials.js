@@ -40,6 +40,14 @@ function create_list(json_string){
         menu.display = "none";
         table.appendChild(tr);
         table.appendChild(menu);
+        
+        if(jsn.bought == "true"){
+            tr.style.textDecoration = "line-through";
+            tr.style.textDecorationThickness = '7px';
+            tr.style.backgroundColor = '#cccccc';
+            tr.className = 'disabled';
+            jsn.price = 0;
+        }
 
         for(var c=0; c<cols.length; c++){
             var col = cols[c];
@@ -123,7 +131,11 @@ function click_event(evt){
     else if(menu.display == "inline"){
         menu.display = "none";
         menu.innerHTML = "";
-        element.style.backgroundColor = '#ffffff';
+        if('disabled' == element.className){
+            element.style.backgroundColor = '#cccccc';
+        }else{
+            element.style.backgroundColor = '#ffffff';
+        }
     }
 }
 
@@ -178,17 +190,16 @@ function RequestDisableMaterial(evt){
     var xhr = new XMLHttpRequest();
     var id = evt.target.id.slice(4);
     var tr = document.getElementById(`data${id}`);
-
-    if(evt.className == "disabled"){
-        tr.className = "";
-    }
-    else{
-        tr.classList.add("disabled");
-    }
-    return;
-    xhr.open('POST', 'DisableMaterial', true);
+    var menu = document.getElementById(`menu${id}`);
+    var table = document.getElementById("tbl");
+    menu.display = 'none';
+    menu.innerHTML = '';
+    tr.style.backgroundColor = '#ffffff';
+    
+    xhr.open('POST', 'ToggleMaterial', true);
     xhr.send(`col=${id}`);
     xhr.onload = () => {
+        table.innerHTML = '<tr><th><p class="header">名前</p></th><th><p class="header">量</p></th><th><p class="header">価格</p></th><th><p class="header">場所</p></th></tr>';
         create_list(xhr.responseText);
     };
 }

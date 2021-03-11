@@ -2,8 +2,6 @@ import socket
 import select
 import os
 import json
-import ssl
-
 
 
 CWD = os.getcwd() + '/'
@@ -57,12 +55,25 @@ def rm_json(col):
     
     return json.dumps(data)
 
+def toggle_json(col):
+    with open(MATERIAL_DATABASE, 'r', encoding='utf8') as f:
+        data = json.load(f)
+
+    if data[col]['bought'] == 'true':
+        data[col]['bought'] = 'false'
+    else:
+        data[col]['bought'] = 'true'
+
+    with open(MATERIAL_DATABASE, 'w', encoding='utf8') as f:
+        json.dump(data, f, indent=4, separators=(',', ': '))
+        f.flush()
+    
+    return json.dumps(data)
+
 
 
 class SelectServer:
     def __init__(self, *args, **kwargs):
-        self.context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-        self.context.load_cert_chain(certfile="mock.crt", keyfile="mock.key")
         self.server_socket = socket.socket(*args, **kwargs)
         self.server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.read_waiters = {}
@@ -102,7 +113,6 @@ class SelectServer:
         
     def accept(self, sock):
         conn, addr = sock.accept()
-        conn = self.context.wrap_socket(conn, server_side=True)
         self.read_waiters[conn] = self.recv
     
     def send(self, sock, data):
@@ -159,6 +169,7 @@ class SelectServer:
             if endpoint == "AddMaterial":
                 cprint(GREEN, f'POST:[200]:{endpoint}')
                 dic = dict([i.split('|#|') for i in data.split("|&|")])
+                dic['bought'] = 'false'
                 print(dic)
 
                 if "" in dic.values():
@@ -176,9 +187,16 @@ class SelectServer:
                 jsn = rm_json(int(dic["col"])).encode()
                 self.response(sock, (200, 'OK'))
                 self.write_waiters[sock] = (self.send, jsn)
+                
+            elif endpoint == "ToggleMaterial":
+                cprint(GREEN, f'POST:[200]:{endpoint}')
+                dic = dict([i.split("=") for i in data.split("&")])
+                jsn = toggle_json(int(dic["col"])).encode()
+                self.response(sock, (200, 'OK'))
+                self.write_waiters[sock] = (self.send, jsn)
 
             else:
-                cprint(RED, f'POST:[404]:{path.split("/")[-1]}')
+                cprint(RED, f'POST:[404]:{endpoint}')
                 self.response(sock, (404, 'NOT FOUND'))
                 self.read_waiters[self.server_socket] = self.accept
                 sock.close()

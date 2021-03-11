@@ -165,7 +165,3 @@ button.bought_button:active {
     background-color:#9bb8ff;
 }
 
-.disabled {
-    text-decoration: line-through;
-    background-color: gray;
-}
