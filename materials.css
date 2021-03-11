@@ -1,0 +1,167 @@
+
+body {
+    background-color: #ffffff;
+}
+
+#tbl {
+    margin-top: 0%;
+    margin: 0% 0% 0% 0%;
+    padding: 0% 0% 0% 0%;
+    width: 100%;
+    height: 8%;
+    background-color: #ffffff;
+}
+
+table, th, td {
+    border: 1px #000000 solid;
+}
+
+.name {
+    margin-left: 10%;
+    font-size: 3em;
+}
+
+.price {
+    font-size: 2.5em;
+    width: 20%;
+    margin-left: 20%;
+    margin-right: 10%;
+    color: #ff7a7a;
+}
+
+.place {
+    margin-left: 10%;
+    font-size: 2.5em;
+}
+
+.amount {
+    font-size: 2.5em;
+    margin-left: 10%;
+}
+
+td {
+    height: 100px;
+}
+
+td.input {
+    height: 200px;
+    text-align: center;
+}
+
+td.namecell {
+    width: 30%;
+}
+
+td.amountcell {
+    width: 5%;
+    text-align: center;
+}
+
+td.pricecell {
+    width: 5%;
+}
+
+td.placecell {
+    width: 10%;
+}
+
+th {
+    background-color: #64bcff;
+    margin-left: 0%;
+}
+
+.header {
+    font-size: 3em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#add {
+    width: 50%;
+    font-size: 3em;
+    margin-top: 0%;
+    margin-left: 50%;
+    margin-bottom: 30%;
+    border-radius: 20px;
+    background-color: #9bb8ff;
+    color: #ffffff;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+#add:active {
+    background-color: #6490ff;
+    transform: translate(0, 15%);
+}
+
+
+input {
+    height: 40%;
+    font-size: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+
+input#newname {
+    width: 95%;
+}
+
+input#newurl {
+    width: 95%;
+}
+
+input#newamount {
+    width: 60%;
+}
+
+input#newprice {
+    width: 95%;
+}
+
+input#newplace {
+    width: 95%;
+}
+
+#total_price {
+    width: 100%;
+    height: 120px;
+    font-size: 5em;
+    margin-top: 5%;
+    color:orangered;
+    background-color:palegoldenrod;
+    text-align: center;
+    padding: 0px;
+}
+
+.menu {
+	width: 100%;
+	background-color: #ffef90;
+	margin: 0px;
+	padding: 0px;
+}
+
+button.remove_button, button.bought_button {
+    width: 40%;
+    font-size: 2.5em;
+    margin-left: 5%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+button.remove_button {
+    color:red;
+    background-color: lightgray;
+}
+
+button.bought_button {
+    color:black;
+    background-color: azure;
+}
+
+button.remove_button:active {
+    background-color:tomato;
+}
+
+button.bought_button:active {
+    background-color:#9bb8ff;
+}
+

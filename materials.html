@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <title>Research Materials</title>
+        <script src="materials.js"></script>
+        <link rel="stylesheet" href="materials.css">
+    </head>
+    <body onload="start();">
+        <table id="tbl">
+            <th><p class="header">名前</p></th>
+            <th><p class="header">量</p></th>
+            <th><p class="header">価格</p></th>
+            <th><p class="header">場所</p></th>
+        </table>
+        <h1 id="total_price"></h1>
+        <button type="button" id="add" ontouchstart onclick="RequestAddMaterial();">Add new material</button>
+    </body>
+</html>
