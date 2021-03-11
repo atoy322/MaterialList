@@ -24,11 +24,11 @@ function create_list(json_string){
     var data = JSON.parse(json_string);
     var cols = ["name", "amount", "price", "place"];
     var input_opts = {
-        "name": ["商品名を入力", "text"],
+        "name": ["商品名", "text"],
         "url": ["URL", "url"],
-        "amount": ["数量", "number"],
+        "amount": ["量", "number"],
         "price": ["価格", "number"],
-        "place": ["買う場所", "text"]
+        "place": ["場所", "text"]
     }
     
     for(var i=0; i<data.length; i++){
@@ -93,7 +93,6 @@ function create_list(json_string){
 function click_event(evt){
     var element = evt.target;
     var cls = element.className;
-    var id = element.id;
     
     if(cls == "name"){
         return;
@@ -116,13 +115,16 @@ function click_event(evt){
         remove_btn.className = "remove_button";
         bought_btn.className = "bought_button";
         remove_btn.innerHTML = "リストから削除";
-        bought_btn.innerHTML = "完了";
+        if(element.className == "disabled"){
+            bought_btn.innerHTML = "取り消し";
+        }
+        else{
+            bought_btn.innerHTML = "完了";
+        }
         remove_btn.id = `rbtn${clicked}`;
         bought_btn.id = `bbtn${clicked}`;
         remove_btn.onmousedown = RequestRemoveMaterial;
         bought_btn.onmousedown = RequestDisableMaterial;
-        remove_btn.ontouchstart = null;
-        bought_btn.ontouchstart = null;
         td.appendChild(remove_btn);
         td.appendChild(bought_btn);
         menu.appendChild(td);
@@ -173,7 +175,6 @@ function RequestAddMaterial(){
 }
 
 function RequestRemoveMaterial(evt){
-    var sound = new Audio("trash.mp3");
     var xhr = new XMLHttpRequest();
     var table = document.getElementById("tbl");
     var id = evt.target.id.slice(4);
