@@ -101,10 +101,6 @@ class SelectServer:
                     self.write_waiters.pop(writable)
             except Exception as e:
                 print(e)
-                print(self.read_waiters, self.write_waiters)
-                from ptpython.repl import embed
-                embed(globals(), locals())
-                exit()
         
     def bind(self, address):
         self.server_socket.bind(address)
