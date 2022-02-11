@@ -207,7 +207,7 @@ class SelectServer:
 
     def parse_header(self, header_str):
         lines = header_str.split('\r\n')
-        cmd, path, version = lines[0].split()
+        cmd, path, _ = lines[0].split()
         
         if path == '/':
             path = '/index.html'
